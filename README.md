@@ -3,7 +3,7 @@ Fundamentals for Algorithm
   . In this repository, I will post my understanding for ML/DL/RL, Data science and Algorithm.
   
   # Fundamentals for Machine Learning
-  1. 
+  1. Diesel price prediction based on web scratch from Yahoo finance
   2. 
   3. 
   4. 
