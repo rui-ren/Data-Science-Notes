@@ -1,4 +1,5 @@
-import collections, numpy
+import collections
+import numpy as np
 
 class NearNeighbor(object):
 	def __init__():
@@ -6,7 +7,7 @@ class NearNeighbor(object):
     
     def fit(X, y):
         self.X = X
-        self.y = yield
+        self.y = y
         return None
     
     def predict(X_test, k): 
