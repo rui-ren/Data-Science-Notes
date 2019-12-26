@@ -2,6 +2,8 @@
 # reference:  python for machine learning
 
 import pandas as pd
+from PCA_sk import *
+
 df_wine = pd.read_csv(
     'https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data',
     header = None)
