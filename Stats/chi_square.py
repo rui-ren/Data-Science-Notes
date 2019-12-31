@@ -119,9 +119,6 @@ print('Left hand:', chi_square)
 
 
 
-"""
-
-
 
 
 
