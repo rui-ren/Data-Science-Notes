@@ -1,6 +1,6 @@
 
 ## K-Mean clustering
-
+* Assumption: dataset consists of **spherical** clusters, with this assumption, the k-means algorithm will create clusters of data observations that **circular** around the centroids.
 * goal is to learn about k-means clustering
 * understand why mini-batch clustering is used for large datasets
 
@@ -20,7 +20,7 @@ from sklearn.cluster import KMeans
 # using k-mean++ centroid initialization by default
 kmeans = KMeans(n_cluster=3)
 # predefined data
-kmean.fit(data)
+kmeans.fit(data)
 # cluster assignments
 new_obs = np.array([
     [5.1, 3.2, 1.7, 1.9],
@@ -51,10 +51,10 @@ print(kmeans.cluster_centers_)
 new_obs = np.array([
     [5.1, 3.2, 1.7, 1.9],
     [6.9, 3.2, 5.3, 2.2]])
-print(kmean.predict(new_obs))
+print(kmeans.predict(new_obs))
 ```
 
-### Define KMean function
+### Define KMeans function pipeline
 
 ```
 def kmeans_clustering(data, n_clusters, batch_size):
