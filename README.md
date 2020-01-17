@@ -1,5 +1,5 @@
 # Fundamentals
-* I wish I can write a Data Science Tutorial at the end of this year 2020! 
+* I wish I can write a ** Data Science Tutorial ** at the end of this year 2020! 
  
   1. Fundamentals for Machine Learning
   
