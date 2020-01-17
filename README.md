@@ -10,3 +10,5 @@ I wish I can write a Data Science Tutorial at the end of this year 2020!
   4. Fundamentals for Data Science
   
   5. SQL
+  
+  6. Statistics
