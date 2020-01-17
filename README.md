@@ -1,15 +1,12 @@
 # Fundamentals
 I wish I can write a Data Science Tutorial at the end of this year 2020! 
  
-  # Fundamentals for Machine Learning
-  1. Diesel price prediction based on web scratch from Yahoo finance
+  1. Fundamentals for Machine Learning
   
-  # Fundamentals for Deep Learning
+  2. Fundamentals for Deep Learning
   
-  # Fundamentals for Reinforcement Learning
+  3. Fundamentals for Reinforcement Learning
 
-  # Fundamentals for Data Science
+  4.Fundamentals for Data Science
   
-  # SQL
-  1. 
-   
+  5. SQL
