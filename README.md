@@ -1,41 +1,15 @@
 # Fundamentals
-Fundamentals for Algorithm
-  . In this repository, I will post my understanding for ML/DL/RL, Data science and Algorithm.
-  
-  # Fundamentals for Machine Learning
-  1. Diesel price prediction based on web scratch from Yahoo finance
-  2. 
-  3. 
-  4. 
-  5. 
-  
+* I wish I can write a **Data Science Tutorial** at the end of this year 2020! 
+
  
+  1. Fundamentals for Machine Learning
   
-  # Fundamentals for Deep Learning
-  1. 
-  2. 
-  3. 
-  4. 
-  5. 
+  2. Fundamentals for Deep Learning
   
+  3. Fundamentals for Reinforcement Learning
+
+  4. Fundamentals for Data Science
   
+  5. SQL
   
-  
-  # Fundamentals for Reinforcement Learning
-  1. 
-  2. 
-  3. 
-  4. 
-  
-  
-  
-  # Fundamentals for Data Science
-  1. 
-  2. 
-  3. 
-  
-  
-  
-  # SQL
-  1. 
-   
+  6. Statistics
