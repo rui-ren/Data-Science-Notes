@@ -1,4 +1,5 @@
 class Human():
+	
 	def __init__(self, n):
 		self.name = n
 		print("__init__", self.name)
