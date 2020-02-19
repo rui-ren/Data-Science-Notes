@@ -100,10 +100,37 @@ emb_vecs = tf.nn.embedding_lookup(emb_mat, word_ids)
 
 ### Embedding loss
 
-* Sampled softmax
+* Sampled softmax: the classes we use to calculate the softmax include the actual context vocabulary word as well as a randomly chosen set of words from entire vocabulary to act as the false labels.
+    - sampled softmax loss give good approximation when training
+    - when evaluating or dev set, it is best to use full softmax cross entropy loss
 
-* NCE loss 
+* NCE loss: convert the multiclass classification problem into a **binary** classification problem.
 
+
+### Cosine Similarity
+
+* Vector comparision: the standard way for comparing vector similarity is through `cosine similarity`, actually it is the multiplication of two normalization of vectors, its value is between [-1, 1]
+
+* Correlation: cosine similarity measures the `correlation` between two vectors.
+
+
+### K-Nearest Neighbors
+
+* Find the top correlated vector
+
+
+## LSTM for NLP
+
+The main idea of machine learning is in `NLP` is to train a model to understand a text corpus well enought so that it can automatically perform tasks such as `text classification` or `text generation`. 
+
+A language model can tell us the likelihood of each word in a given sentence or text passage based on the words that came before it. We can determine how likely a sentence or text passage is by aggregating its individual word probabilities.
+
+- Text classification: email spam
+- Text generation: a language model completes a sentence by generating text based on the incomplete input sentence
+
+### Word probabilities
+
+The purpose of a language model is to assign probabilities to words in sequences of text.
 
 
 
