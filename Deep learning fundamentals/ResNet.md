@@ -49,3 +49,59 @@ pad_total = kernel_size
 
 
 ```
+
+### Pre-activation
+
+* `covariate shift` occurs when the input data's `distribtion` changes and the model cannot handle the change properly.
+
+    - training a set of only iamges of brown dogs, but test the model on image of yellow dogs. 
+
+
+* `internal covariate shift` is essentially just a covariate shift that happens between layers of a model since the input of one layer is the output of the previous layer. The weights of a model are constantly being updated, each layer's output distribution will constantly change. However, in models with many layers these incremental changes will eventually add up, and lead to internal covariate shift at deeper layers.
+
+    - Solution to internal covariate shift is `batch normalization`.
+    
+    - Batch normalization has two trainable variables, $\gamma$ and $\beta$, $BN(X) = \gamma * X + \beta$
+    
+    - During evaluation, we use the average mean and variance for each batch normalization layer rather than the input data's mean and variance.
+    
+    
+* Pre-activation
+
+when we use batch normalization, we apply it right before an activation function, e.g. ReLU. Normally, the activation function in CNNs comes after each convolution layer -> `Post-activation`
+
+`ResNet Version 1`: Convolution layers -> batch normalization -> ReLU activation.
+
+
+`ResNet Version 2`: batch normalization -> ReLU activation -> Convolution layers
+
+
+### Shortcut
+
+* Mapping function: Each ResNet building block takes in an input $\ x$, and produces some output $\ H(x)$, where $\ H$ represents mapping function.
+
+* Identity mapping: just means the `output` for a layer is the `same` as the `input`.
+
+* Residual learning: $ F_B(x) = \ H_B(x) - \ x $, we add a $\ x$ to the block's output. This is referred to as a `shortcut connection`. $\ F_B (X)$ is sknown as `residual learning`.
+
+* Projection shortcut: is the result of applying a convolution layer, with $\ 1x1$ kernels, to the preactivation input data. This convolution layer ensures that the **shortcut** has the same dimensions as the block's output, by using the same stride size and number of filters.
+
+### ResNet Block
+
+* Learning the identity: it is easier to learn the `zero mapping` than the `identity mapping`, just need the weight to be zero. 
+
+* Improving performance: adding many layers to a model and still avoid degradation, by having the additional layers represent identity mappings, and residual learning `increase` model performance when adding many layers.
+
+### Bottlenect
+
+* `ResNet Block` is the main building block for models with fewer than 50 layers, use 3 convolution layers rather than 2.
+
+* `Bottlenect block` : the third convolution layer of a bottleneck block uses four times as many filters as a regular ResNet block.
+
+* 
+
+
+### Full Model Architecture
+
+* Regularization: Batch normalization has the effect of regularization, thus did not use `dropout` in the model for the calculation
+* 

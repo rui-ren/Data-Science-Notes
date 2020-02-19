@@ -73,4 +73,38 @@ class EmbeddingModel(object):
 * The basis of embedding vectors comes from the concept of a **target word** and its **context window**.
 
 
+### Skip-gram
+* The skip-gram model uses target-context training pairs, each pair has a target word as the first element and a context word as the second element, creating a training pair for each context word, it requires much less actual data than the CBOW model, it can represent words or phrases better than the CBOW model
+
+
+
+### CBOW -> the Continuous-Bag-of-Words
+
+* context-target training pairs, each pair will have all the context words as the first element and the target word as the second element, this is faster to train, for common words, CBOW model can present more accurate embedding for more common words.
+
+
+### Embedding Matrix
+
+```
+import tensorflow as tf
+emb_mat = tf.get_variable('v1', shape=(5,10))
+word_ids = tf.constant([0,3])  # create the lookup value
+emb_vecs = tf.nn.embedding_lookup(emb_mat, word_ids)
+
+```
+
+
+### Candidat sampling
+* 
+
+
+### Embedding loss
+
+* Sampled softmax
+
+* NCE loss 
+
+
+
+
 
