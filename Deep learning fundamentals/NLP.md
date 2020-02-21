@@ -133,5 +133,77 @@ A language model can tell us the likelihood of each word in a given sentence or 
 The purpose of a language model is to assign probabilities to words in sequences of text.
 
 
+## RNN / LSTM
+
+* Understand the differences between `feed-forward` and `recurrent neural networks`.
+
+* Learn about the long short-term memory(LSTM) cell
+
+    - `MLP` is a type of `feed-forward neural network`: each of its layers is a fixed size, and each layer's output is feed into the next layer as input, good for fixed size input data.
+    
+    - `recurrent neural networks`: designed to work with sequential data of varying lengths, the main component of a recurrent neural network (RNN) is its `cell`.
+    
+    - `rolled RNN diagram` consists of a single cell and 3 types of connections, the input, output and recurrent.
+    
+    - Transition of time step are the connections, `state` gives the cell at the current time step information about the cell inputs and outputs from previous time steps, it is incredibly useful for capturing dependencies in the text that make it easier to calculate probalilities and predictions.
+
+### LSTM
+
+* Specially, it is difficult for RNNs to handle `long-term` dependencies. The solution is to use LSTM. `LSTM` cell is specifically designed to keep track of all the useful dependencies in text sequence.
+
+* Inside of a default RNN cell consists of two fully-connected layers. The first layer has `tanh` activation, and it is used to compute the cell's state at a particular time step, based on the previous state and the time step's input. The second fully-connected layer is unactivated, and it's used to compute the cell's output at the time step. The number of hidden units in the cell as the number of hidden units in the fully-connected layers.
+
+* `LSTM` cell adds a few additional layers to the default RNN cell. These additional layers as `gates`, since they help regulate the information that is added or removed from the cell state. These additional gates gives `LSTM` cells the boost needed to handle long-term dependencies.
+
+* Dropout: the purpose of dropout in the context of RNNs is to regularize the `RNN` during training. 
+
+    - In feed-forward neural network, dropout refers to randomly `dropping` or `zeroing-out` certain hidden neurons during training. The **fraction** of neurons that are randomly dropped out is referred to as the `dropout rate`.
+    
+    - In recurrent neural networks, we apply dropout to the input and/or output of each cell unit. When dropout is applied to a cell's input/output at a particular time step, the cell's connection at that time step is zero'd out. So whatever, the previous input/output value was, it would be set to 0 due to the dropout. `tf.nn.rnn_cell.DropoutWrapper`, and two parameters `input_keep_prob` and `output_keep_prob`, usually,a good tune point is setting parameter as 0.5.
+    
+
+### Multiple layers
+
+* Stacking layers : adding cell layers the model to pick up on more complex features from the input sequence and therefore improve performance when trained on a large enough dataset.
+
+* Add more layers can improve performance on larger datasets but also run the risk of overfitting the data.
+
+### LSTM output
+
+* `tf.nn.dynamic_rnn` is the way for us to create and run an RNN. This function takes two required arguments, the first is the cell object that is used to create the RNN. The second is the `batch of input sequences`, which are usually first converted to word embedding sequences.
+
+* `sequence_length` argument, the function can skip unnecessary computation ofr the padded parts of each sequence, which can greatly reduce training time.
+
+
+### Calculate loss
+
+* covert LSTM models's outputs into logits
+* Use a padding mask to calculate the overall loss
+
+* Logits & Loss: regular softmax cross entropy loss, and fully-connected layer to convert model outputs into logits for each of the possible classes.
+
+* Padding mask: we want to exclude the loss calculated for the padded time steps, since those values are meaningless. Therefore, we use a `padding mask` to zeor-out the loss at padded time steps.
+
+### Predictions
+
+* Calculating probabilities: Converting the RNN's output into logits, we apply the softmax function to the final dimension of the logits.
+
+* word predictions: similar to regular multiclass predictions with an MLP, we calculate the RNNs word predictions by taking the highest probability word at each time step.
+
+
+### Tensor indexing
+
+* Extract the word predictions for the final time step of each sequence.
+
+
+
+    
+    
+    
+    
+    
+    
+
+
 
 
