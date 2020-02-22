@@ -59,4 +59,69 @@ The decoder transforms that input back into a text sequence.
 
 
 
-* 
+### Attention
+
+* Learn about attention and understand why it is useful. Attention makes use of trainable weights to calculate a context vector, like a mini neural network, input: `decoder's current state` and `encoder outputs`, and use its `trainable weights` to produce a context vector.
+
+* Attention mechanisms: `BahdanauAttention` is additive method and `LuongAttention` is multiplicative method.
+
+    - The difference between the two mechanisms is how they combine the `encoder outputs` and `current time step hidden state` when computing the `context vector`.
+    
+    - 
+    ```
+    luong = tf.contrib.seq2seq.LuongAttention(
+        num_units,
+        combined_enc_outputs,
+        memory_sequence_length=input_seq_lens
+    )
+    ```
+    
+    ```
+    import tensorflow as tf
+    dec_cell = tf.nn.rnn_cell.LSTMCell(8)
+    dec_cell = tf.contrib.seq2seq.AttentionWrapper(
+        dec_cell, # add attention to the decoder cell
+        luong,
+        attention_layer_size=8
+    )
+    
+    ```
+    
+### Calculating Loss
+
+* Calculate the training loss based on the model's `logits` and `final token sequences`. using a sparse softmax cross entropy loss based on the logits and final token sequences, and then zero-out the time steps that correspond to padding.
+
+* Final token sequence: 
+
+* Sequence mask: 
+
+
+### Inference Decoding
+
+* Learn how to perform decoding for inference
+* Learn about variable scopes for declaring and retieving variables
+
+* Decoding without ground truth: the input for the decoder at each time is just the decoder's output token from the previous time step.
+
+* `GreedyEmbeddingHelper` is the most commonly used inference helper object. 
+
+* `Greedy decoding` 
+
+### Model Improvement
+
+* Good encoder-decoder model tend to have a large number of weight parameters, since they consist of large `LSTM/BiLSTM` layers. It will take a long time to train `encoder-decoder` model to convergence.
+
+    - Solution: use large batch size during the initial stages of training. 
+    - Then reduce the batch size once the model begins to show considerable improvement in reducing the loss function.
+    - Solution: start off with a larger learning rate, then gradually decrease the learning rate as the model trains.
+    
+
+* Domain-specific strategies: Tweaks the model
+    - text summarization: truncate the input text to a maximum length
+    - text summarization: set a maximum decoding length when creating summaries.
+    - dialog systems: prune out profanity and other words 
+    
+In all, it is important to understand the seq2seq task's domain prior to building an encoder-decoder model for the task.
+
+    
+
