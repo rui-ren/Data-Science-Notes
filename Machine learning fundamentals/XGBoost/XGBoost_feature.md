@@ -55,4 +55,3 @@ cv_model.best_params_['max_depth']
 # cv_model.predict(new_data)
 ```
 
-### JOblib
