@@ -1,7 +1,7 @@
 
 ## Natural Language Processing
 
-Natural Language Processing (NLP) encompassees any task related to machines learning with natural language, human spoken or written language. 
+Natural Language Processing (NLP) encompassees any task related to machines learning with natural language, human spoken or written language, related to using machines to process and understand human text/speech.
 
 * Topic: **translating** between language, speech, recognition, text analysis, and automatic text generation, in general **spoken** or **written data**.
 
@@ -26,17 +26,24 @@ We can use the **vocabulary** to find **the number of times** each word appears 
 
 ### Tokenizer object
 * `TensorFlow` we can convert a text corpus into tokenized sequences using `Tokenizer` object.
+    - Use `NLTK` package to do tokenization.
+    - Use `Keras` 
+    - Use `Re` regulex to do tokenization
+    - `sklearn.preprocessing.text.tokenzier`
 
 ```
 import tensorflow as tf
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
 text_corpus = ['bob ate apples, and pears', 'fred ate apples!']
+# initialize the object with a text corpus
 tokenizer.fit_on_texts(text_corpus)
-tokenizer.fit_on_texts(text_corpus)
+# convert pieces of text into sequences of tokens
 new_texts = ['bob ate pears', 'fred ate pears']
 print(tokenizer.texts_to_sequences(new_texts))
+# print the word index in the token
 print(tokenizer.word_index)
 ```
+    - `Tokenizer` will filter out any punctuation and white space
 
 ### Tokenizer parameters
 
@@ -47,10 +54,11 @@ tokenizer = tf.keras.preprocessing.text.Tokenizer(
     # parameter num_words can specify the maximum number of vocabulary words to use
     # oov_token can give us the special vocabulary token
 text_corpus = ['bob ate apples, and pears', 'fred ate apples!']
+# generate the text corpus
 tokenizer.fit_on_texts(text_corpus)
 print(tokenizer.texts_to_sequences(['bob ate bacon']))
 print(tokenizer.word_index)
-
+# {'OOV': 1, 'ate': 2, 'apples': 3, 'bob': 4, 'and': 5, 'pears': 6, 'fred': 7}
 ```
 
 ```
@@ -69,21 +77,26 @@ class EmbeddingModel(object):
 
 ### Embeddings
 
-* An **embedding vector** is a higher-dimensional vector representation of a vocabulary word, it can give us a sense of distance and capture relationship between words.
-* The basis of embedding vectors comes from the concept of a **target word** and its **context window**.
+* An **embedding vector** is a `higher-dimensional vector` representation of a vocabulary word, it can give us a sense of distance and capture relationship between words.
+* The basis of embedding vectors comes from the concept of a **target-context** and its **context-target**.
 
 
 ### Skip-gram
-* The skip-gram model uses target-context training pairs, each pair has a target word as the first element and a context word as the second element, creating a training pair for each context word, it requires much less actual data than the CBOW model, it can represent words or phrases better than the CBOW model
-
+* The skip-gram model uses `target-context` training pairs, each pair has a target word as the first element and a context word as the second element, creating a training pair for each context word, it requires much `less` actual data than the CBOW model, it can represent words or phrases better than the CBOW model.
 
 
 ### CBOW -> the Continuous-Bag-of-Words
+* `context-target` training pairs, each pair will have all the context words as the first element and the target word as the second element, this is faster to train, for common words, CBOW model can present more accurate embedding for more common words, the context element for the CBOW model contains multiple words, we use the average context embedding vector when training our embedding model.
 
-* context-target training pairs, each pair will have all the context words as the first element and the target word as the second element, this is faster to train, for common words, CBOW model can present more accurate embedding for more common words.
-
+### Comparison between Skip-gram vs. CBOW
+- Skip-gram model creates a training pair for each context word, it requre much less actual data than CBOW model
+- CBOW model is faster to train
+- Skip-gram model is creating multiple instances of training pairs for each target word, it can represent rarer words or phrases better than CBOW model.
+- CBOW model can provide more accurate embeddings for more common words
 
 ### Embedding Matrix
+
+
 
 ```
 import tensorflow as tf
