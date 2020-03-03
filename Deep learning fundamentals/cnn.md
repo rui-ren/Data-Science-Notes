@@ -158,15 +158,17 @@ class MNISTModel(object):
 
 def run_model_setup(self, inputs, labels, is_training):
     logits = self.model_layers(inputs, is_training)
-    
+    # get the probability for the calculation
     self.probs = tf.nn.softmax(logits, name='probs')
+    # extract the most probability
     self.predictions = tf.argmax(
         self.probs, axis=-1, name='predictions')
+    # extract the label for the calculation
     class_labels = tf.argmax(labels, axis=-1)
-    
+    # calculate the error
     is_correct = tf.equal(
         self.predictions, class_labels)
-    
+    # change format to float
     is_correct_float = tf.cast(
         is_correct,
         tf.float32)
@@ -174,14 +176,14 @@ def run_model_setup(self, inputs, labels, is_training):
     # comput ratio of correct to incorrect predictions
     self.accuracy = tf.reduce_mean(
         is_correct_float)
-    
+    # training the model
     if self.is_training:
         labels_float = tf.cast(
             labels, tf.float32)
         
-        cross_entropy = tf.nn.softmax_cross_entropy_with_logits, 
+        cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2( 
             labels=labels_float,
-            logits=logits
+            logits=logits)
         self.loss = tf.reduce_mean(
             cross_entropy)
         
@@ -197,7 +199,27 @@ def run_model_setup(self, inputs, labels, is_training):
 * life is short, please use pytorch
 
 ```
+import torch.nn as nn
+import torch.nn.functional as F
 
-
+class LeNet(nn.Module):
+    def __init__(self):
+        super(LeNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16*5*5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84,10)
+    
+    def forward(self, x):
+        out = F.relu(self.conv1(x))
+        out = F.max_pool2d(out, 2)
+        out = F.relu(self.conv2(out))
+        out = F.max_pool2d(out, 2)
+        out = out.view(out.size(0), -1)
+        out = F.relu(self.fc1(out))
+        out = F.relu(self.fc2(out))
+        out = self.fc3(out)
+        return out
 
 ```
