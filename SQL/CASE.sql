@@ -16,7 +16,6 @@ FROM station_data
 
 -- the same syntax for the calculation
 
-
 SELECT report_code, year, month, day, wind_speed,
 
 -- CASE is kind of like a conditional if loop
