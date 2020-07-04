@@ -1,5 +1,5 @@
 # Fundamentals
-* I wish I can write a **Data Science Tutorial** by the end of this year 2020! 
+* Data Science Notes, fundamental is cornerstone! 
 
  
   1. Fundamentals for Machine Learning
