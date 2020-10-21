@@ -112,5 +112,43 @@ SELECT Gender FROM Actors GROUP BY Gender;
 
 SELECT MaritalStatus, AVG(NetWorthInMillions) FROM Actors GROUP BY MaritalSTATUS order by MaritalStatus ASC;
 
+SELECT Gender FROM Actors GROUP BY Gender;
+
+SELECT MaritalStatus, AVG(NetWorthInMillions) AS NetWorthInMillions
+FROM Actors
+GROUP BY MaritalStatus
+HAVING NetWorth > 450 OR NetWorth < 250;
+
+SELECT MaritalStatus, AVG(NetWorthInMillions) AS NetWorth
+FROM Actors
+GROUP BY MaritalStatus
+HAVING MaritalStatus = 'Married';
+
+
+-- Join 
+
+SELECT * FROM Actors a INNER JOIN Actors b;
+
+-- Query 2
+
+SELECT * FROM Actors a INNER JOIN Actors b USING (FirstName);
+
+-- Query 3
+SELECT * FROM Actors a INNER JOIN Actors b USING (NetWorthInMillions);
+
+-- query
+SELECT FirstName, SecondName, AssetType, URL 
+FROM Actors
+LEFT JOIN DigitalAssets
+ON Actors.Id = DigitalAssets.ActorID;
+
+
+-- Nested query
+SELECT FirstName
+FROM Actors 
+WHERE (Id, MONTH(DoB), DAY(DoB))
+IN ( SELECT ActorId, MONTH(LastUpdatedOn), DAY(LastUpdatedOn)
+    FROM DigitalAssets);
+
 
 

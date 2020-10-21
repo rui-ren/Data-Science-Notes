@@ -18,6 +18,7 @@
 * Insert value 
 * Query the value  , BETWEEN ... AND ,  COALESCE() ... GREATEST(), IN, INTERVAL . IS
 * Like return the same pattern here!
+* % match the rest one, _ only match one.
 
 ```
     SELECT * FROM Actors WHERE FirstName LIKE "Jen%";
@@ -25,3 +26,21 @@
 
 
 ```
+
+* CAST (... AS CHAR) change the type of the datatype into CHAR;
+* LIMIT 5  ... the number need to be displayed;
+* Using OFFSET to get the next numbers;
+* SELECT FirstName, SecondName, NetWorthInMillions FROM Actors ORDER BY NetWorthInMillions DESC LIMIT 4 OFFSET 3;
+* SELECT FirstName, SecondName, NetWorthInMillions FROM Actors ORDER BY NetWorthInMillions DESC LIMIT 3, 4;
+
+
+* MySQL allows us to change our mind about the entities we create and alter them. We can rename tables, add, remove, rename columns, change type of an existing columns, etc.
+
+* DISTINCT 
+* aggregate functions  --> MAX, MIN, COUNT, AVG, SUM
+* WHERE clause that can filter rows, however, having clause allows us to filter groups, like can be used for group by functions.
+* UNION clause allows us to **combine** the results from several queries together. The clause does not join the table but merely clubs the two result together.
+
+* EXISTS  NOT EXISTS clause here!
+* REPLACE --> 
+* 
